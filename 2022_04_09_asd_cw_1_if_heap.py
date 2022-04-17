@@ -3,7 +3,7 @@ def if_heap(K):
 
     result = True
 
-    for i in range (0,length):
+    for i in range(0, length):
         left = i * 2 + 1
         right = left + 1
 
@@ -14,11 +14,12 @@ def if_heap(K):
 
     return result
 
+
 # arr = [12,6,33,4,6,11]
 # arr = [33,6,12,4,6,11]
 # arr = [7,2,1,4,9,8,7,4]
 # arr = [50,9,8,7,2,1,7,4,4]
-arr = [50,9,8,7,2,1,7,4,8]
+arr = [50, 9, 8, 7, 2, 1, 7, 4, 8]
 # arr = [50,9,8,7,2,1,7,4,4,2]
 
 
@@ -34,4 +35,3 @@ print("\n* * *\n")
 #         break
 
 print(if_heap(arr))
-
