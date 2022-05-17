@@ -1,6 +1,5 @@
 import math
 
-
 def max_heapify(K, length, i):
     left = i * 2 + 1
     right = left + 1
