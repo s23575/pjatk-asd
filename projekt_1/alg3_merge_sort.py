@@ -1,5 +1,7 @@
 from math import floor
+from sys import setrecursionlimit
 from time import time
+
 from numpy import load
 
 
@@ -35,6 +37,8 @@ def merge_sort(arr):
             j += 1
             k += 1
 
+
+setrecursionlimit(10 ** 6)
 
 print("- - - Dane testowe: - - -")
 

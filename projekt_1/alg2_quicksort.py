@@ -24,6 +24,8 @@ def quicksort(arr, p, r):
         quicksort(arr, q + 1, r)
 
 
+setrecursionlimit(10 ** 6)
+
 print("- - - Dane testowe: - - -")
 
 print("Losowe:")
@@ -43,8 +45,6 @@ arr_test = load("array_test_descending.npy")
 print(arr_test)
 quicksort(arr_test, 0, len(arr_test) - 1)
 print(arr_test)
-
-setrecursionlimit(500000)
 
 print("\n- - - Dane wejściowe: - - -")
 

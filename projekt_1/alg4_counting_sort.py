@@ -1,8 +1,11 @@
+from sys import setrecursionlimit
 from time import time
+
 from numpy import load
 
 
-def counting_sort(arr, k):
+def counting_sort(arr):
+    k = max(arr) + 2
     arr_temp = [0] * k
     arr_sorted = [0] * len(arr)
 
@@ -20,27 +23,26 @@ def counting_sort(arr, k):
         arr[i] = arr_sorted[i]
 
 
+setrecursionlimit(10 ** 6)
+
 print("- - - Dane testowe: - - -")
 
 print("Losowe:")
 arr_test = load("array_test_random.npy")
-k = max(arr_test) + 2
 print(arr_test)
-counting_sort(arr_test, k)
+counting_sort(arr_test)
 print(arr_test)
 
 print("Posortowane:")
 arr_test = load("array_test_ascending.npy")
-k = max(arr_test) + 2
 print(arr_test)
-counting_sort(arr_test, k)
+counting_sort(arr_test)
 print(arr_test)
 
 print("Odwrotnie posortowane:")
 arr_test = load("array_test_descending.npy")
-k = max(arr_test) + 2
 print(arr_test)
-counting_sort(arr_test, k)
+counting_sort(arr_test)
 print(arr_test)
 
 print("\n- - - Dane wejściowe: - - -")
@@ -49,8 +51,7 @@ print("Losowe:")
 arr = load("array_random.npy")
 print(arr)
 start_time = time()
-k = max(arr) + 2
-counting_sort(arr, k)
+counting_sort(arr)
 end_time = time() - start_time
 print(arr)
 print("Czas działania: %s seconds" % end_time)
@@ -59,8 +60,7 @@ print("Posortowane:")
 arr = load("array_ascending.npy")
 print(arr)
 start_time = time()
-k = max(arr) + 2
-counting_sort(arr, k)
+counting_sort(arr)
 end_time = time() - start_time
 print(arr)
 print("Czas działania: %s seconds" % end_time)
@@ -69,8 +69,7 @@ print("Odwrotnie posortowane:")
 arr = load("array_descending.npy")
 print(arr)
 start_time = time()
-k = max(arr) + 2
-counting_sort(arr, k)
+counting_sort(arr)
 end_time = time() - start_time
 print(arr)
 print("Czas działania: %s seconds" % end_time)

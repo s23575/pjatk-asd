@@ -1,4 +1,5 @@
 from math import floor
+from sys import setrecursionlimit
 from time import time
 
 from numpy import load
@@ -33,6 +34,8 @@ def heap_sort(arr):
         arr[i], arr[0] = arr[0], arr[i]
         max_heapify(arr, i, 0)
 
+
+setrecursionlimit(10 ** 6)
 
 print("- - - Dane testowe: - - -")
 

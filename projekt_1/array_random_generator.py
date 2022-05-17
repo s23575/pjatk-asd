@@ -8,11 +8,17 @@ arr = random.randint(1, 100, 500000)
 save("array_test_random.npy", arr_test)
 save("array_random.npy", arr)
 
+arr_test = random.randint(1, 100, 10)
+arr = random.randint(1, 100, 500000)
+
 arr_test.sort(kind="stable")
 arr.sort(kind="stable")
 
 save("array_test_ascending.npy", arr_test)
 save("array_ascending.npy", arr)
+
+arr_test = random.randint(1, 100, 10)
+arr = random.randint(1, 100, 500000)
 
 arr_test[::-1].sort(kind="stable")
 arr[::-1].sort(kind="stable")
