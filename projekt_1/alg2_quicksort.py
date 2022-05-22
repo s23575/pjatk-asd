@@ -17,17 +17,19 @@ def partition(arr, p, r):
     return i + 1
 
 
-# def quicksort(arr, p, r):
-#     if p < r:
-#         q = partition(arr, p, r)
-#         quicksort(arr, p, q - 1)
-#         quicksort(arr, q + 1, r)
-
 def quicksort(arr, p, r):
-    while p < r:
+    if p < r:
         q = partition(arr, p, r)
         quicksort(arr, p, q - 1)
-        p = q + 1
+        quicksort(arr, q + 1, r)
+
+
+# Testowana metoda eliminacji drugiej rekursji (rekursji końcowej)
+# def quicksort(arr, p, r):
+#     while p < r:
+#         q = partition(arr, p, r)
+#         quicksort(arr, p, q - 1)
+#         p = q + 1
 
 
 setrecursionlimit(10 ** 6)
