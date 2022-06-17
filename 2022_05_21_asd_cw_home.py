@@ -1,6 +1,3 @@
-import time
-
-
 def countingSort(arr, k):
     arrTemp = [0] * k
     arrSorted = [0] * len(arr)

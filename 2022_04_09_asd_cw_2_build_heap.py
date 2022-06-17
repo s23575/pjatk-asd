@@ -1,6 +1,5 @@
 import math
 
-
 def max_heapify(K, i):
     left = i * 2 + 1
     right = left + 1
@@ -29,7 +28,8 @@ def build_max_heap(K):
 
 
 # arr = [50,9,8,7,2,1,7,4,4]
-arr = [12, 6, 33, 4, 6, 11]
+# arr = [12, 6, 33, 4, 6, 11]
+arr = [1, 1, 1, 1, 1, 3, 1, 2]
 
 print("Tablica:")
 print(arr)
