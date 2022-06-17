@@ -1,8 +1,4 @@
 import math
-import os
-
-import numpy
-from numpy import save
 
 
 # Budowanie kolejki priorytetowej typu minimum ("kopcowanie"):
@@ -94,18 +90,31 @@ print(dict)
 string_bin = huffman_encoding(dict, string)
 print(string_bin)
 
+n = 8
+str_arr = [string_bin[i:i + n] for i in range(0, len(string_bin), n)]
+last = "{" + str_arr[-1] + "}"
+str_arr.pop()
+print(str_arr)
 
+# file = open("sample", "w")
+# file.write(str(dict))
+# file.close()
+# file = open("sample", "ab")
+data = bytearray()
+file = open("sample", "wb")
+for bit in str_arr:
+    data.append(int(bit, 2))
+#     n = int(bit, 2)
+#     data = bytes([n])
+file.write(data)
+file.close()
+# file = open("sample", "a")
+# file.write(last)
+# file.close()
 
-#
-# n = int(string_bin, 2)
-# n.to_bytes((n.bit_length() + 7) // 8, 'big').decode()
-#
-# # b = string_bin
-# # a_byte_array = bytearray(int(b[x:x+8], 2) for x in range(0, len(b), 8))
-# # print(a_byte_array)
-# #
-# # file = open("sample", "wb")
-# # # file.write(bytearray(str(dict).encode('ascii')))
-# # file.seek(0, os.SEEK_END)
-# # file.write(a_byte_array)
-# # file.close()
+with open("sample", "rb") as f:
+    string = f.read()
+print(string)
+
+for byte in string:
+    print(format(byte, '#010b'))
