@@ -94,27 +94,17 @@ n = 8
 str_arr = [string_bin[i:i + n] for i in range(0, len(string_bin), n)]
 last = "{" + str_arr[-1] + "}"
 str_arr.pop()
-print(str_arr)
 
-# file = open("sample", "w")
-# file.write(str(dict))
-# file.close()
-# file = open("sample", "ab")
-data = bytearray()
-file = open("sample", "wb")
-for bit in str_arr:
-    data.append(int(bit, 2))
-#     n = int(bit, 2)
-#     data = bytes([n])
-file.write(data)
+file = open("text_to_decode", "w")
+file.write(str(dict) + "[COMPRESSED_TEXT]")
 file.close()
-# file = open("sample", "a")
-# file.write(last)
-# file.close()
+file = open("text_to_decode", "ab")
+for bit in str_arr:
+    n = int(bit, 2)
+    data = bytes([n])
+    file.write(data)
+file.close()
+file = open("text_to_decode", "a")
+file.write("[COMPRESSED_TEXT]" + last)
+file.close()
 
-with open("sample", "rb") as f:
-    string = f.read()
-print(string)
-
-for byte in string:
-    print(format(byte, '#010b'))

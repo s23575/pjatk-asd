@@ -18,8 +18,25 @@ def huffman_decoding(str_dict, str_bin):
     return decoded
 
 
-string_bin = "01001110110111110110111000100010"
-str_dict = "{'A': '010', 'l': '011', 'k': '1110', 'm': '1111', 't': '000', 'o': '001', ' ': '110', 'a': '10'}"
+with open("text_to_decode", "r", errors='ignore') as f:
+    string = f.read()
+
+string = string.split("[COMPRESSED_TEXT]")
+
+str_dict = string[0]
+
+with open("text_to_decode", "rb") as f:
+    byte_array = f.read()
+
+compressed_text_start = len(string[0]) + len("[COMPRESSED_TEXT]")
+compressed_text_end = len(byte_array) - (len("[COMPRESSED_TEXT]") + len(string[2]))
+
+string_bin = ""
+
+for x in range(compressed_text_start, compressed_text_end):
+    string_bin += format(byte_array[x], '#010b')[2:]
+
+string_bin += string[2][1:-1]
 
 decoded = huffman_decoding(str_dict, string_bin)
 print(decoded)
