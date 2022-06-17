@@ -1,10 +1,8 @@
 import ast
 
 
-def huffman_decoding(str_dict, str_bin):
-    dict = ast.literal_eval(str_dict)
-
-    decoding = [list(dict.keys()), list(dict.values())]
+def huffman_decoding(dictionary, str_bin):
+    decoding = [list(dictionary.keys()), list(dictionary.values())]
     string_search = ""
     decoded = ""
 
@@ -18,25 +16,40 @@ def huffman_decoding(str_dict, str_bin):
     return decoded
 
 
-with open("text_to_decode", "r", errors='ignore') as f:
-    string = f.read()
+def return_dict_last(file="text_to_decode"):
+    with open(file, "r", errors='ignore') as file:
+        string = file.read()
+    string = string.split("[COMPRESSED_TEXT]")
+    str_dict = string[0]
+    last = string[2]
+    return str_dict, last
 
-string = string.split("[COMPRESSED_TEXT]")
 
-str_dict = string[0]
+def return_string_bin(file="text_to_decode"):
+    with open(file, "rb") as file:
+        byte_array = file.read()
 
-with open("text_to_decode", "rb") as f:
-    byte_array = f.read()
+    compressed_text_start = len(str_dict) + len("[COMPRESSED_TEXT]")
+    compressed_text_end = len(byte_array) - (len("[COMPRESSED_TEXT]") + len(last))
 
-compressed_text_start = len(string[0]) + len("[COMPRESSED_TEXT]")
-compressed_text_end = len(byte_array) - (len("[COMPRESSED_TEXT]") + len(string[2]))
+    string_bin = ""
 
-string_bin = ""
+    for x in range(compressed_text_start, compressed_text_end):
+        string_bin += format(byte_array[x], '#010b')[2:]
 
-for x in range(compressed_text_start, compressed_text_end):
-    string_bin += format(byte_array[x], '#010b')[2:]
+    string_bin += last[1:-1]
+    return string_bin
 
-string_bin += string[2][1:-1]
 
-decoded = huffman_decoding(str_dict, string_bin)
+str_dict, last = return_dict_last()
+dictionary = ast.literal_eval(str_dict)
+print("\n[SŁOWNIK]\n")
+print(dictionary)
+
+string_bin = return_string_bin()
+print("\n[TEKST_DO_ODKODOWANIA]\n")
+print(string_bin)
+
+decoded = huffman_decoding(dictionary, string_bin)
+print("\n[TEKST_ODKODOWANY]\n")
 print(decoded)
