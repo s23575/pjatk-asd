@@ -83,7 +83,7 @@ decoded = ""
 
 for i in range(len(string_bin)):
     string_search += string_bin[i]
-    if string_search in decoding.value:
+    if string_search in decoding[1]:
         if not i + 1 == len(string_bin):
             if not string_search + string_bin[i + 1] in decoding[1]:
                 decoded += decoding[0][decoding[1].index(string_search)]
