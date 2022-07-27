@@ -44,16 +44,17 @@ def leaf_bin(string, side, dictionary):
 def huffman_dict_bin(freq):
     queue = [list(freq.keys()), list(freq.values())]
     dictionary = {}
+    build_min_heap(queue)
 
     # Tworzenie słownika:
     for i in range(len(queue[0]) - 1):
-        build_min_heap(queue)
         leaf_left = [queue[0].pop(0), queue[1].pop(0)]
         leaf_bin(leaf_left[0], "0", dictionary)
+        min_heapify(queue, 0)
 
-        build_min_heap(queue)
         leaf_right = [queue[0].pop(0), queue[1].pop(0)]
         leaf_bin(leaf_right[0], "1", dictionary)
+        min_heapify(queue, 0)
 
         node = [leaf_left[0] + leaf_right[0], leaf_left[1] + leaf_right[1]]
         queue[0].insert(0, node[0])
